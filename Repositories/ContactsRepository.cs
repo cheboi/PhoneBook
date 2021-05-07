@@ -40,10 +40,10 @@ namespace PhoneBook.Repositories
             {
                 try
                 {
-                    var query = "DELETE FROM Contacts WHERE PhoneNumber = @PhoneNumber";
+                    var query = "DELETE FROM Contacts WHERE Id = @Id";
 
                     var parameters = new DynamicParameters();
-                    parameters.Add("PhoneNumber", entity.PhoneNumber, DbType.String);
+                    parameters.Add("Id", entity.Id, DbType.Int32);
 
                     using (var connection = CreateConnection())
                     {
@@ -74,14 +74,14 @@ namespace PhoneBook.Repositories
             }
         }
 
-        public async Task<Contacts> GetByPhoneNumberAsync(int PhoneNumber)
+        public async Task<Contacts> GetByIdAsync(int Id)
         {
             try
             {
                 var query = "SELECT * FROM Products WHERE Id = @Id";
 
                 var parameters = new DynamicParameters();
-                parameters.Add("Phone", PhoneNumber, DbType.Int32);
+                parameters.Add("Id", Id, DbType.Int32);
 
                 using (var connection = CreateConnection())
                 {
@@ -102,6 +102,7 @@ namespace PhoneBook.Repositories
                 var parameters = new DynamicParameters();
                 parameters.Add("Name", entity.Name, DbType.String);
                 parameters.Add("PhoneNumber", entity.PhoneNumber, DbType.String);
+                parameters.Add("Id", entity.Id, DbType.Int32);
                 using (var connection = CreateConnection())
                 {
                     return await connection.ExecuteAsync(query, parameters);

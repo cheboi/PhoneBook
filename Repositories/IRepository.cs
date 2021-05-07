@@ -9,7 +9,7 @@ namespace PhoneBook.Repositories
     public interface IRepository<T> where T : BaseEntity
     {
         Task<List<T>> GetAllAsync();
-        Task<T> GetByPhoneNumberAsync(int PhoneNumber);
+        Task<T> GetByIdAsync(int Id);
         Task<int> CreateAsync(T entity);
         Task<int> UpdateAsync(T entity);
         Task<int> DeleteAsync(T entity);
