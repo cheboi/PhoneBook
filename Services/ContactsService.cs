@@ -19,7 +19,7 @@ namespace PhoneBook.Services
             return await _contactsRepository.CreateAsync(contacts);
         }
 
-        public async Task<int> DeleteContactAsync(Contacts contacts)
+        public async Task<int> DeleteContactsAsync(Contacts contacts)
         {
             return await _contactsRepository.DeleteAsync(contacts);
         }
@@ -29,14 +29,15 @@ namespace PhoneBook.Services
             return await _contactsRepository.GetAllAsync();
         }
 
-        public async Task<Contacts> GetContactBYPhoneNumber(int PhoneNumber)
+        public async Task<Contacts> GetContactById(int id)
         {
-            return await _contactsRepository.GetByPhoneNumberAsync(PhoneNumber);
+            return await _contactsRepository.GetByIdAsync(id);
         }
 
         public async Task<int> UpdateContactsAsync(Contacts contacts)
         {
             return await _contactsRepository.UpdateAsync(contacts);
         }
+
     }
 }
