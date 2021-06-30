@@ -10,7 +10,7 @@
   
 <p>Download and install</p> 
 [.NET 5.0](https://dotnet.microsoft.com/download)
-  <h2>Buil and Run</h2>
+  <h2>Build and Run</h2>
   at the terminal type
 `dotnet run`
   
