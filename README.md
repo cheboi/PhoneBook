@@ -3,6 +3,7 @@
 <p>Helps in understanding the basic concepts of creation</p>
 <h2>Technologies</h2>
 <ul>
+  <li>Asp.net 5.0 </li>
   <li>C#</li>
   <li>SQL</li>
   <li>Dapper ORM</li>
