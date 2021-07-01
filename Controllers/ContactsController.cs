@@ -10,7 +10,7 @@ namespace PhoneBook.Controllers
 {
     public class ContactsController : Controller
     {
-        public readonly IContactsService _contactsService;
+        private readonly IContactsService _contactsService;
         public ContactsController(IContactsService contactsService)
         {
             _contactsService = contactsService;
@@ -22,6 +22,36 @@ namespace PhoneBook.Controllers
         public async Task<IActionResult> Details(int id)
         {
             return View(await _contactsService.GetContactById(id));
+        }
+        public async Task<IActionResult> Edit(int id)
+        {
+            return View(await _contactsService.GetContactById(id));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Contacts contacts)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var dbContacts = await _contactsService.GetContactById(id);
+                    if (await TryUpdateModelAsync<Contacts>(dbContacts))
+                    {
+                        await _contactsService.UpdateContactsAsync(dbContacts);
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Unable to save changes.");
+            }
+            return View(contacts);
+        }
+        public IActionResult Create()
+        {
+            return View();
         }
         [HttpPost]
         [IgnoreAntiforgeryToken]
@@ -43,28 +73,7 @@ namespace PhoneBook.Controllers
             }
             return View(contacts);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Contacts contacts)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var dbContacts = await _contactsService.GetContactById(id);
-                    if (await TryUpdateModelAsync<Contacts>(dbContacts))
-                    {
-                        await _contactsService.UpdateContactsAsync(dbContacts);
-                        return RedirectToAction(nameof(Index));
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("", "Unable to save changes.");   
-            }
-            return View(contacts);
-        }
+
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {

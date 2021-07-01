@@ -26,6 +26,7 @@ namespace PhoneBook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddScoped<IContactsRepository, ContactsRepository>();
             services.AddScoped<IContactsService, ContactsService>();
 

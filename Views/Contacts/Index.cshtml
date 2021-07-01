@@ -5,17 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Contacts</h1>
 
-<p>
-    <a asp-action="Create">Create New Contacts</a>
-</p>
+<div class="row">
+    <div class="col">
+        <h1>Contacts</h1>
+    </div>
+    <div class="col text-right">
+        <a asp-action="Create" class="btn btn-success">Create New Contacts</a>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -28,9 +29,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>

@@ -18,7 +18,7 @@ namespace PhoneBook.Repositories
         {
             try
             {
-                var query = "INSERT INTO Contacts (Name, PhoneNumber,) VALUES (@Name, @PhoneNumber,)";
+                var query = "INSERT INTO Contacts (Name, PhoneNumber,) VALUES (@Name, @PhoneNumber,);";
 
                 var parameters = new DynamicParameters();
                 parameters.Add("Name", entity.Name, DbType.String);

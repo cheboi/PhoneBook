@@ -13,7 +13,7 @@ namespace PhoneBook.Domain
         [Required (ErrorMessage ="{0} is required.")]
         public string Name { get; set; }
         [Display(Name ="Phone number")]
-        [RegularExpression("^(?!0+$)(\\+\\d{1,7}[- ]?)?(?!0+$)\\d{10}$", ErrorMessage = "Please enter valid phone no.")]
+        [RegularExpression(@"^[\+]?[(]?[0 - 9]{3}[)]?[-\s\.]?[0 - 9]{3}[-\s\.]?[0 - 9]{ 4,6}$", ErrorMessage = "Please enter valid phone no.")]
         public string PhoneNumber { get; set; }
     }
 }
